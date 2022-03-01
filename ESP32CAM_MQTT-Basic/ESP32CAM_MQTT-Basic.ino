@@ -18,12 +18,12 @@
 #include <PubSubClient.h> //Biblioteca para conexion MQTT
 
 //Datos de WiFi
-const char* ssid = "********";  // Aquí debes poner el nombre de tu red
-const char* password = "********";  // Aquí debes poner la contraseña de tu red
+const char* ssid = "CASTILLO";  // Aquí debes poner el nombre de tu red
+const char* password = "YolandaC23";  // Aquí debes poner la contraseña de tu red
 
 //Datos del broker MQTT
-const char* mqtt_server = "127.0.0.1"; // Si estas en una red local, coloca la IP asignada, en caso contrario, coloca la IP publica
-IPAddress server(127,0,0,1);
+const char* mqtt_server = "192.168.39.127"; // Si estas en una red local, coloca la IP asignada, en caso contrario, coloca la IP publica
+IPAddress server(192,168,39,127);
 
 // Objetos
 WiFiClient espClient; // Este objeto maneja los datos de conexion WiFi
@@ -98,7 +98,7 @@ void loop() {
     dtostrf(data, 1, 2, dataString);  // Esta es una función nativa de leguaje AVR que convierte un arreglo de caracteres en una variable String
     Serial.print("Contador: "); // Se imprime en monitor solo para poder visualizar que el evento sucede
     Serial.println(dataString);
-    client.publish("esp32/data", dataString); // Esta es la función que envía los datos por MQTT, especifica el tema y el valor
+    client.publish("codigoIoT/ejemplos/MQTT", dataString); // Esta es la función que envía los datos por MQTT, especifica el tema y el valor
   }// fin del if (timeNow - timeLast > wait)
 }// fin del void loop ()
 
@@ -127,7 +127,7 @@ void callback(char* topic, byte* message, unsigned int length) {
 
   // Ejemplo, en caso de recibir el mensaje true - false, se cambiará el estado del led soldado en la placa.
   // El ESP323CAM está suscrito al tema esp/output
-  if (String(topic) == "esp32/output") {  // En caso de recibirse mensaje en el tema esp32/output
+  if (String(topic) == "codigoIoT/ejemplos/MQTT") {  // En caso de recibirse mensaje en el tema esp32/output
     if(messageTemp == "true"){
       Serial.println("Led encendido");
       digitalWrite(flashLedPin, HIGH);
@@ -147,7 +147,7 @@ void reconnect() {
     // Intentar reconexión
     if (client.connect("ESP32CAMClient")) { //Pregunta por el resultado del intento de conexión
       Serial.println("Conectado");
-      client.subscribe("esp32/output"); // Esta función realiza la suscripción al tema
+      client.subscribe("codigoIoT/ejemplos/MQTT"); // Esta función realiza la suscripción al tema
     }// fin del  if (client.connect("ESP32CAMClient"))
     else {  //en caso de que la conexión no se logre
       Serial.print("Conexion fallida, Error rc=");
