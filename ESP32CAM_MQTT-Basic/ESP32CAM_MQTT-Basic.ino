@@ -2,6 +2,8 @@
  * Conexión básica por MQTT del NodeMCU
  * por: Hugo Escalpelo
  * Fecha: 28 de julio de 2021
+ * Modificado por Armida
+ * Fecha: 2 marzo 2022
  * 
  * Este programa envía datos  por Internet a través del protocolo MQTT. Para poder
  * comprobar el funcionamiento de este programa, es necesario conectarse a un broker
@@ -131,12 +133,12 @@ void callback(char* topic, byte* message, unsigned int length) {
     if(messageTemp == "true"){
       Serial.println("Led encendido");
       digitalWrite(flashLedPin, HIGH);
-    }// fin del if (String(topic) == "esp32/output")
+    }// fin del if (String(topic) == "codigoIoT/ejemplos/MQTT")
     else if(messageTemp == "false"){
       Serial.println("Led apagado");
       digitalWrite(flashLedPin, LOW);
     }// fin del else if(messageTemp == "false")
-  }// fin del if (String(topic) == "esp32/output")
+  }// fin del if (String(topic) == "codigoIoT/ejemplos/MQTT")
 }// fin del void callback
 
 // Función para reconectarse
@@ -158,4 +160,4 @@ void reconnect() {
       Serial.println (client.connected ()); // Muestra estatus de conexión
     }// fin del else
   }// fin del bucle while (!client.connected())
-}// fin de void reconnect(
+}// fin de void reconnect
