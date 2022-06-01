@@ -24,8 +24,8 @@ const char* ssid = "CASTILLO";  // Aquí debes poner el nombre de tu red
 const char* password = "YolandaC23";  // Aquí debes poner la contraseña de tu red
 
 //Datos del broker MQTT
-const char* mqtt_server = "192.168.39.127"; // Si estas en una red local, coloca la IP asignada, en caso contrario, coloca la IP publica
-IPAddress server(192,168,39,127);
+const char* mqtt_server = "18.159,219.87"; // Si estas en una red local, coloca la IP asignada, en caso contrario, coloca la IP publica
+IPAddress server(18,159,219,87);
 
 // Objetos
 WiFiClient espClient; // Este objeto maneja los datos de conexion WiFi
